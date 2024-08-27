@@ -8,6 +8,68 @@ views:
     sections:
       - name: Section
         items:
+          - id: 2389995897332
+            type: iframe
+            url: https://sorteio.in/pitah
+          - id: 8094924619069
+            type: weather
+            entity_id: weather.openweathermap
+            show_apparent: false
+          - id: 9648097127219
+            type: timer
+          - id: 5661982835671
+            type: time
+          - id: 2552895414520
+            type: template
+            template: '{{states.binary_sensor.sensorportaentradaap_contact.state}}'
+          - id: 707466864428
+            type: sensor
+            entity_id: sensor.sensortemperaturaumidadegeladeira_temperature
+            prefix: 'Geladeira: '
+            suffix: °C
+          - id: 2904612812021
+            type: radial
+            entity_id: sensor.phoneemanuel_battery_level
+          - id: 4093126505757
+            type: image
+            url: >-
+              https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcrin83plmT4LP3egn6mqB3ZXkyNtpp0pcA&s
+          - id: 6811817253205
+            type: notifications
+          - id: 6666997604556
+            type: navigate
+          - id: 2559820857574
+            type: history
+            entity_id: binary_sensor.sensorportaentradaap_contact
+            period: day
+          - id: 2271852218554
+            type: graph
+            entity_id: sensor.phoneemanuel_battery_level
+          - id: 6983142726314
+            type: weather_forecast
+            entity_id: weather.casa
+            icon_pack: meteocons
+            days_to_show: 5
+          - id: 6641485178611
+            type: divider
+          - id: 4637297969848
+            type: conditional_media
+            entity_id: light.quarto_solteiro
+            media_players:
+              - entity_id: media_player.echo_show_8
+            show_timeout: true
+            marquee: true
+            timeout: 1
+          - id: 8052858948881
+            type: camera
+            entity_id: camera.tablet_office_camera
+            size: contain
+          - id: 4185586469012
+            type: graph
+            entity_id: sensor.sensortemperaturaumidadegeladeira_temperature
+            name: Geladeira
+          - id: 1258183034629
+            type: date
           - id: 5966661527994
             type: button
             entity_id: light.interruptor_sala_interruptor_3
@@ -17,14 +79,14 @@ views:
             entity_id: sensor.tablet_desktop_battery_level
             math: 100 - x
             name: asdasdasdas
+          - id: 1433278571594
+            type: bar
+            entity_id: sensor.motoe22_internal_storage
           - id: 2327064362919
             type: bar
             entity_id: sensor.redmi_note_7_battery_level
             name: teste
-          - id: 1433278571594
-            type: bar
-            entity_id: sensor.motoe22_internal_storage
-          - id: 996020418353
+          - id: 3974875049868
             type: bar
             entity_id: sensor.motoe22_internal_storage
             name: ola
