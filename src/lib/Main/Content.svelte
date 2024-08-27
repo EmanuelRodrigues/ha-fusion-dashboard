@@ -5,6 +5,8 @@
 	import Camera from '$lib/Main/Camera.svelte';
 	import Configure from '$lib/Main/Configure.svelte';
 	import Empty from '$lib/Main/Empty.svelte';
+	import Bar from '$lib/Sidebar/Bar.svelte';
+	import BarConfig from '$lib/Modal/BarConfig.svelte';
 
 	export let item: any;
 	export let sectionName: string | undefined = undefined;
@@ -24,6 +26,9 @@
 	<Camera sel={item} responsive={false} muted={true} controls={false} />
 {:else if item?.type === 'empty'}
 	<Empty sel={item} />
+{:else if item?.type === 'bar'}
+	<Bar entity_id={item.entity_id} name={item.name} math={item.math} id={item.id}  />
+
 {:else}
 	<!-- if types are changed internally, don't break ui -->
 	<Configure sel={{ id: item?.id }} />

@@ -1,7 +1,7 @@
 <script lang="ts">
 	// eventually merge with SidebarItemConfig.svelte...
 
-	import { dashboard, record, lang, motion, ripple, states, demo } from '$lib/Stores';
+	import { dashboard, record, lang, motion, ripple, states, demo, connection } from '$lib/Stores';
 	import { openModal, closeModal } from 'svelte-modals';
 	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
@@ -10,12 +10,19 @@
 	import {
 		getCameraEntity,
 		getSensorEntity,
-		getMediaPlayerEntity
+		getMediaPlayerEntity,
+		getGraphEntity,
+		getPercentageEntity,
+		getTimerEntity,
+		getHistoryEntity,
+		getWeatherEntity,
+		getWeatherForecastEntity
 	} from '$lib/Modal/getRandomEntity';
 
 	import Button from '$lib/Main/Button.svelte';
 	import Camera from '$lib/Main/Camera.svelte';
 	import ConditionalMedia from '$lib/Main/ConditionalMedia.svelte';
+	import Bar from '$lib/Sidebar/Bar.svelte';
 	import Empty from '$lib/Main/Empty.svelte';
 	import ConfigButtons from '$lib/Modal/ConfigButtons.svelte';
 	import Ripple from 'svelte-ripple';
@@ -30,6 +37,16 @@
 	if (!$demo.camera) $demo.camera = getCameraEntity($states);
 	if (!$demo.sensor) $demo.sensor = getSensorEntity($states);
 	if (!$demo.media_player) $demo.media_player = getMediaPlayerEntity($states);
+		// get random preview entities
+	if (!$demo.graph) getGraphEntity($states, connection, (id) => ($demo.graph = id));
+	if (!$demo.sensor) $demo.sensor = getSensorEntity($states);
+	if (!$demo.timer) $demo.timer = getTimerEntity($states);
+	if (!$demo.bar) $demo.bar = getPercentageEntity($states);
+	if (!$demo.radial) $demo.radial = getPercentageEntity($states);
+	if (!$demo.camera) $demo.camera = getCameraEntity($states);
+	if (!$demo.history) $demo.history = getHistoryEntity($states);
+	if (!$demo.weather) $demo.weather = getWeatherEntity($states);
+	if (!$demo.weather_forecast) $demo.weather_forecast = getWeatherForecastEntity($states);
 
 	onMount(() => {
 		if (searchElement) {
@@ -95,6 +112,15 @@
 			}
 		},
 		{
+			id: 'bar',
+			type: 'Bar',
+			component: Bar,
+			props: {
+				entity_id: $demo.bar,
+				sel
+			}
+		},
+		{
 			id: 'conditional_media',
 			type: `${$lang('conditional')} ${$lang('media')?.toLocaleLowerCase()}`,
 			component: ConditionalMedia,
@@ -137,6 +163,13 @@
 			case 'empty':
 				openModal(() => import('$lib/Modal/EmptyConfig.svelte'), { sel });
 				break;
+
+			case 'bar':
+				openModal(() => import('$lib/Modal/BarConfig.svelte'), {
+					sel,
+					demo: $demo.bar
+				});
+				break;				
 			default:
 				openModal(() => import('$lib/Modal/MainItemConfig.svelte'), { sel });
 		}
