@@ -5,7 +5,6 @@
 <script lang="ts">
 	import { translation, lang, motion, showDrawer, connection, selectedLanguage } from '$lib/Stores';
 	import { fade, scale } from 'svelte/transition';
-	import { Confetti } from 'svelte-confetti';
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 
@@ -100,12 +99,6 @@
 					</button>
 				{/if}
 			</div>
-		</div>
-	{/if}
-
-	{#if animateConfetti}
-		<div class="confetti">
-			<Confetti x={[-2.2, 2.2]} y={[-2.2, 2.2]} {duration} amount="150" />
 		</div>
 	{/if}
 </main>
