@@ -1,9 +1,206 @@
 theme: godis
 hide_views: false
 hide_sidebar: false
-sidebarWidth: 415
+sidebarWidth: 265
 views:
-  - name: Overview
+  - name: Smart home
+    id: 3419819056531
+    sections:
+      - name: Sala
+        items:
+          - id: 9549744670489
+            type: button
+            entity_id: switch.interruptor_sala_interruptor_1
+            name: Luz principal
+            more_info: false
+            icon: raphael:lamp
+          - id: 2832480424989
+            type: button
+            entity_id: light.led_sala_tomada_1
+            more_info: false
+            name: Fita LED
+          - id: 1344368646193
+            type: button
+            entity_id: switch.interruptor_sala_3
+            more_info: false
+            name: Trilho Spot
+          - id: 6334140875793
+            type: button
+            entity_id: sensor.sensortemperaturaumidadesala_temperature
+            more_info: false
+            name: Temperatura
+          - id: 3132124423103
+            type: button
+            entity_id: switch.tv_pitah
+            more_info: false
+            name: Televisão
+          - id: 2375905790009
+            type: button
+            entity_id: binary_sensor.sensorpresencasala_presence
+            template:
+              state: |-
+                {% if is_state(entity_id, "on") %}
+                  Ocupado
+                {% else %}
+                  Livre
+                {% endif %}
+            name: Sofá
+            more_info: false
+          - id: 8142171100372
+            type: button
+            entity_id: binary_sensor.sensorportaentradaap_contact
+            name: Apartamento
+            template:
+              state: |-
+                {% if is_state(entity_id, "on") %}
+                  Aberto
+                {% else %}
+                  Trancado
+                {% endif %}
+            more_info: false
+          - id: 6116708284005
+            type: button
+            entity_id: sensor.sensortemperaturaumidadesala_humidity
+            name: Umidade
+            more_info: false
+        id: 9610077170840
+      - name: Quarto
+        items:
+          - id: 5866386160813
+            type: button
+            entity_id: switch.interruptor_quarto_casal_luz
+            more_info: false
+            icon: raphael:lamp
+            name: Luz
+          - id: 5646225618616
+            type: button
+            entity_id: light.cabeceira_tomada_1
+            more_info: false
+          - id: 5807446087724
+            type: button
+            entity_id: light.abajur_nice
+            more_info: false
+          - id: 3232894975353
+            type: button
+            entity_id: light.abajur_emanuel
+            more_info: false
+          - id: 1566898992149
+            type: button
+            entity_id: switch.repelente_tomada_1
+            name: Repelente
+            more_info: false
+            icon: gridicons:bug
+          - id: 2471741740870
+            type: button
+            entity_id: sensor.sensortemperaturaumidadequartocasal_temperature
+            name: Temperatura
+          - id: 6908725839411
+            type: button
+            entity_id: sensor.sensortemperaturaumidadequartocasal_humidity
+            name: Umidade
+          - id: 2357942784362
+            type: button
+            entity_id: binary_sensor.sensorportacomluminosidade1_contact
+            template:
+              state: |-
+                {% if is_state(entity_id, "on") %}
+                  Aberto
+                {% else %}
+                  Fechado
+                {% endif %}
+            name: Porta do quarto
+            more_info: false
+          - id: 2151196438490
+            type: button
+            entity_id: light.luz_quarto
+        id: 3680280163229
+      - name: Cozinha
+        items:
+          - id: 9783862957862
+            type: button
+            entity_id: switch.interruptor_cozinha_interruptor_1
+            more_info: false
+            name: Luz
+            icon: raphael:lamp
+          - id: 5923503880899
+            type: button
+            entity_id: switch.interruptor_cozinha_interruptor_2
+            name: Lustre Pendente
+            more_info: false
+          - id: 7314654421086
+            type: button
+            entity_id: sensor.lavadora_washer_job_state
+            more_info: false
+            color: '#683131'
+            name: Lava e seca
+            icon: game-icons:washing-machine
+            template:
+              state: |-
+                {% if is_state(entity_id, "wash") %}
+                  Lavando
+                {% elif is_state(entity_id, "rinse") %}
+                  Limpando  
+                {% elif is_state(entity_id, "drying") %}
+                  Secando
+                {% elif is_state(entity_id, "spin") %}
+                  Centrifugando  
+                {% elif is_state(entity_id, "none") %}
+                  Desligada  
+                {% endif %}
+          - id: 2847416916933
+            type: button
+            entity_id: sensor.sensortemperaturaumidadegeladeira_temperature
+            name: Geladeira Temp
+            more_info: false
+          - id: 1164284263443
+            type: timer
+            entity_id: timer.teste
+            hide_mobile: true
+        id: 8300749410233
+      - type: horizontal-stack
+        sections:
+          - name: Escritório
+            items:
+              - id: 2555039798566
+                type: button
+                entity_id: switch.interruptor_escritorio_interruptor_1
+                more_info: false
+                name: Luz
+                template:
+                  state: |-
+                    {% if is_state(entity_id, "on") %}
+                      Ligado
+                    {% else %}
+                      Desligado
+                    {% endif %}
+                icon: raphael:lamp
+              - id: 1097286366087
+                type: button
+                entity_id: sensor.sistema_climatico_temperatura_escritorio
+                name: Temperatura
+                more_info: false
+              - id: 7169635781012
+                type: button
+                entity_id: sensor.sistema_climatico_umidade_escritorio
+                name: Umidade
+              - id: 5693149077296
+                type: button
+                entity_id: light.interruptor_escritorio_luz_de_fundo
+                name: Backlight
+                more_info: false
+              - id: 7525186312058
+                type: button
+                entity_id: switch.adb_tablet
+                more_info: false
+              - id: 2840221423311
+                type: button
+                entity_id: switch.automacao_alexa
+                more_info: false
+              - id: 5403685625156
+                type: divider
+            id: 8899884576118
+        id: 4678595048949
+  - name: Geral
     id: 4250618329122
     sections:
       - name: Section
@@ -22,7 +219,7 @@ views:
           - id: 2552895414520
             type: template
             template: '{{states.binary_sensor.sensorportaentradaap_contact.state}}'
-          - id: 707466864428
+          - id: 7397986119251
             type: sensor
             entity_id: sensor.sensortemperaturaumidadegeladeira_temperature
             prefix: 'Geladeira: '
@@ -102,8 +299,32 @@ sidebar:
   - id: 6117450426914
     type: weather_forecast
     entity_id: weather.casa
+    days_to_show: 4
+    icon_pack: meteocons
+  - id: 2058107803656
+    type: divider
   - id: 5007208896065
     type: bar
-    entity_id: sensor.sensorporta11_battery
-    name: teste
-    math: x-10
+    entity_id: sensor.eficiencia_geladeira
+    name: 'Uso da geladeira:'
+    math: ''
+  - id: 9574219067466
+    type: divider
+  - id: 7652098200573
+    type: bar
+    entity_id: sensor.sensortemperaturaumidadebanheiro_humidity
+    name: Uso do chuveiro
+  - id: 5033502230499
+    type: divider
+  - id: 4069556843782
+    type: graph
+    entity_id: sensor.sensorpresencasala_illuminance_lux
+    name: 'Iluminação da sala:'
+  - id: 1141119311388
+    type: graph
+    entity_id: sensor.sensorportacomluminosidade1_illuminance
+    name: 'Iluminação no quarto:'
+  - id: 7059662831948
+    type: divider
+  - id: 2897548509155
+    type: navigate

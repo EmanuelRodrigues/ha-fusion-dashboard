@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ComputeIcon from '$lib/Components/ComputeIcon.svelte';
 	import StateLogic from '$lib/Components/StateLogic.svelte';
+	import { longpress } from '$lib/Components/actions';
+	let pressed;
 	import {
 		connection,
 		editMode,
@@ -19,7 +21,7 @@
 	} from '$lib/Stores';
 	import { getDomain, getName, getTogglableService } from '$lib/Utils';
 	import Icon, { loadIcon } from '@iconify/svelte';
-	import { callService, type HassEntity } from 'home-assistant-js-websocket';
+	import { callService, getStates, type HassEntity } from 'home-assistant-js-websocket';
 	import { marked } from 'marked';
 	import { onDestroy } from 'svelte';
 	import { openModal } from 'svelte-modals';
@@ -172,6 +174,10 @@
 	 * Handle click events
 	 * Opens modal for specified domain
 	 */
+	//async function 
+
+
+
 	async function handleClickEvent() {
 		if ($editMode) {
 			openModal(() => import('$lib/Modal/ButtonConfig.svelte'), {
@@ -406,6 +412,18 @@
 
 	let unsubscribe: () => void;
 
+	function handleLongPress() {
+		if (stateOn === false){
+			toggle();
+		}
+		if (getDomain(sel?.entity_id) === "light") {
+					openModal(() => import('$lib/Modal/LightModal.svelte'), {
+						sel: sel
+					});
+					
+				}
+	}
+
 	async function renderTemplate(key: string, value: string) {
 		if (!$connection || !sel?.id) return;
 
@@ -517,7 +535,7 @@
 		</div>
 	</div>
 
-	<div class="right" on:click|stopPropagation={handleEvent} on:keydown role="button" tabindex="0">
+	<div class="right" use:longpress={500} on:click|stopPropagation={handleEvent} on:keydown on:longpress|stopPropagation={handleLongPress} role="button" tabindex="0">
 		<!-- NAME -->
 		<div class="name" data-state={stateOn}>
 			{@html (sel?.template?.name && template?.name?.output) ||
