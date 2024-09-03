@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ComputeIcon from '$lib/Components/ComputeIcon.svelte';
 	import StateLogic from '$lib/Components/StateLogic.svelte';
-	import { longpress } from '$lib/Components/actions';
+	import { press } from 'svelte-gestures';
 	let pressed;
 	import {
 		connection,
@@ -535,7 +535,7 @@
 		</div>
 	</div>
 
-	<div class="right" use:longpress={500} on:click|stopPropagation={handleEvent} on:keydown on:longpress|stopPropagation={handleLongPress} role="button" tabindex="0">
+	<div class="right"use:press={{ timeframe: 500, triggerBeforeFinished: true }}  on:click|stopPropagation={handleEvent} on:keydown on:press|stopPropagation={handleLongPress} role="button" tabindex="0">
 		<!-- NAME -->
 		<div class="name" data-state={stateOn}>
 			{@html (sel?.template?.name && template?.name?.output) ||
